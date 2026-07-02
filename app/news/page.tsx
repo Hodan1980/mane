@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container, CtaBand, PageHero, SectionHead } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import { ANNOUNCEMENTS, NEWS, newsByYear } from "@/content/news";
+import heroLake from "@/public/images/hero-lake.jpg";
 
 export const metadata: Metadata = {
   title: "News",
@@ -18,41 +19,46 @@ export default function NewsPage() {
         eyebrow="News"
         title="Announcements & market commentary"
         lede="Transaction news, regulatory announcements and our partners' views on the Bulgarian and international capital markets."
+        image={heroLake}
       />
 
-      <section className="py-20 sm:py-28">
-        <Container className="max-w-4xl">
+      <section className="bg-white py-20 sm:py-28">
+        <Container>
           <Reveal>
             <SectionHead
               eyebrow="Company announcements"
               title="Official announcements"
             />
           </Reveal>
-          <ul className="mt-10 space-y-6">
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
             {ANNOUNCEMENTS.map((item, i) => (
-              <Reveal key={item.title} delay={i * 80}>
-                <li className="lift rounded-2xl border border-line bg-white p-7 hover:border-gold/40">
+              <Reveal key={item.title} delay={i * 100} className="h-full">
+                <article className="lift flex h-full flex-col bg-petrol p-7 text-white">
                   {item.date ? (
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-aqua">
                       {item.date}
                     </p>
-                  ) : null}
-                  <h3 className="mt-2 font-serif text-lg font-medium leading-snug text-ink">
+                  ) : (
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-aqua">
+                      Announcement
+                    </p>
+                  )}
+                  <h3 className="mt-3 flex-1 text-base font-bold leading-snug">
                     {item.title}
                   </h3>
                   {item.summary ? (
-                    <p className="mt-2 text-sm leading-relaxed text-mist">
+                    <p className="mt-3 text-sm leading-relaxed text-white/70">
                       {item.summary}
                     </p>
                   ) : null}
-                </li>
+                </article>
               </Reveal>
             ))}
-          </ul>
+          </div>
         </Container>
       </section>
 
-      <section className="border-t border-line bg-cream py-20 sm:py-28">
+      <section className="bg-icy py-20 sm:py-28">
         <Container className="max-w-4xl">
           <Reveal>
             <SectionHead eyebrow="Archive" title="News through the years" />
@@ -64,21 +70,21 @@ export default function NewsPage() {
                 <Reveal>
                   <h3
                     id={`year-${year}`}
-                    className="flex items-center gap-5 font-serif text-3xl font-medium text-ink"
+                    className="flex items-center gap-5 text-3xl font-bold tracking-tight text-ink"
                   >
                     {year}
-                    <span className="h-px flex-1 bg-line" aria-hidden="true" />
+                    <span className="h-px flex-1 bg-fog" aria-hidden="true" />
                   </h3>
                 </Reveal>
-                <ul className="mt-8 space-y-8">
+                <ul className="mt-8 space-y-7">
                   {items.map((item, i) => (
                     <Reveal key={`${item.title}-${i}`} delay={(i % 4) * 60}>
-                      <li className="grid gap-2 border-l-2 border-gold/50 pl-6 sm:grid-cols-[7rem_1fr] sm:gap-6 sm:border-l-0 sm:pl-0">
-                        <p className="pt-0.5 text-xs font-semibold uppercase tracking-[0.14em] text-gold">
+                      <li className="grid gap-2 sm:grid-cols-[7rem_1fr] sm:gap-6">
+                        <p className="pt-0.5 text-xs font-semibold uppercase tracking-[0.14em] text-teal">
                           {item.date ?? String(year)}
                         </p>
-                        <div className="sm:border-l-2 sm:border-gold/40 sm:pl-6">
-                          <h4 className="text-base font-medium leading-snug text-ink">
+                        <div className="border-l-2 border-teal/40 pl-5">
+                          <h4 className="text-base font-semibold leading-snug text-ink">
                             {item.title}
                           </h4>
                           {item.summary ? (

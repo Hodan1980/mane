@@ -25,11 +25,11 @@ export default function TaglineCycler({ taglines }: { taglines: string[] }) {
   return (
     <p
       key={animate ? index : "static"}
-      className={`font-serif text-base italic text-white/60 sm:text-lg ${
+      className={`text-lg font-normal text-white/70 sm:text-xl ${
         animate ? "animate-tagline" : ""
       }`}
     >
-      “{taglines[index]}”
+      {taglines[index]}
     </p>
   );
 }

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container, CtaBand, PageHero, SectionHead } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import { MILESTONES, VALUES } from "@/content/site";
+import forestDark from "@/public/images/forest-dark.jpg";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -16,9 +17,10 @@ export default function AboutPage() {
         eyebrow="About Us"
         title="An independent boutique with an institutional heritage"
         lede="Mane Capital is the direct successor of the successful investment banking practice of KBC Securities in Bulgaria."
+        image={forestDark}
       />
 
-      <section className="py-20 sm:py-28">
+      <section className="bg-white py-20 sm:py-28">
         <Container className="grid gap-14 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
           <Reveal>
             <SectionHead
@@ -54,19 +56,17 @@ export default function AboutPage() {
           </Reveal>
 
           <Reveal delay={150}>
-            <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-gold">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.28em] text-teal">
               Milestones
             </h3>
-            <ol className="mt-8 space-y-0 border-l border-line">
+            <ol className="mt-8 border-l-2 border-teal/25">
               {MILESTONES.map((m) => (
                 <li key={m.year} className="relative pb-9 pl-8 last:pb-0">
                   <span
-                    className="absolute -left-[5px] top-1.5 h-[9px] w-[9px] rotate-45 bg-gold"
+                    className="absolute -left-[7px] top-1.5 h-3 w-3 rounded-full border-2 border-teal bg-white"
                     aria-hidden="true"
                   />
-                  <p className="font-serif text-lg font-semibold text-ink">
-                    {m.year}
-                  </p>
+                  <p className="text-lg font-bold text-ink">{m.year}</p>
                   <p className="mt-1.5 text-sm leading-relaxed text-mist">
                     {m.text}
                   </p>
@@ -77,7 +77,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="border-y border-line bg-cream py-20 sm:py-28">
+      <section className="bg-icy py-20 sm:py-28">
         <Container>
           <Reveal>
             <SectionHead
@@ -88,14 +88,14 @@ export default function AboutPage() {
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
             {VALUES.map((value, i) => (
               <Reveal key={value.name} delay={i * 90} className="h-full">
-                <div className="lift h-full rounded-2xl border border-line bg-white p-8 hover:border-gold/40">
-                  <span className="font-serif text-sm text-gold">
-                    {String(i + 1).padStart(2, "0")}
+                <div className="lift h-full border-t-2 border-teal bg-white p-7">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-teal text-sm font-bold text-teal">
+                    {i + 1}
                   </span>
-                  <h3 className="mt-3 font-serif text-lg font-medium text-ink">
+                  <h3 className="mt-4 font-bold tracking-tight text-ink">
                     {value.name}
                   </h3>
-                  <p className="mt-3 text-sm leading-relaxed text-mist">
+                  <p className="mt-2.5 text-sm leading-relaxed text-mist">
                     {value.description}
                   </p>
                 </div>

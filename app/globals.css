@@ -1,19 +1,30 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-plex), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: var(--font-plex), ui-sans-serif, system-ui, sans-serif;
 
-  --color-ink: #16232f;
-  --color-navy: #12263c;
-  --color-navy-deep: #0a1522;
-  --color-paper: #faf9f6;
-  --color-cream: #f4f1ea;
-  --color-gold: #b08d57;
-  --color-gold-soft: #c8a97a;
-  --color-mist: #5c6975;
-  --color-line: #e6e2d7;
-  --color-line-dark: #223650;
+  /* Namier-style petrol / teal palette */
+  --color-deep: #071d2a;
+  --color-petrol: #0b2836;
+  --color-panel: #10344a;
+  --color-steel: #1b5e7e;
+  --color-teal: #1fb3aa;
+  --color-aqua: #2fd0c6;
+  --color-icy: #eef4f7;
+  --color-fog: #dde8ee;
+
+  /* Legacy aliases kept so every component maps onto the new palette */
+  --color-ink: #0e2a3a;
+  --color-navy: #10344a;
+  --color-navy-deep: #0b2836;
+  --color-paper: #ffffff;
+  --color-cream: #eef4f7;
+  --color-gold: #1fb3aa;
+  --color-gold-soft: #2fd0c6;
+  --color-mist: #5b7381;
+  --color-line: #d9e4ea;
+  --color-line-dark: #1c455c;
 }
 
 :root {
@@ -29,7 +40,7 @@ body {
 }
 
 ::selection {
-  background-color: #b08d57;
+  background-color: #1fb3aa;
   color: #ffffff;
 }
 
@@ -65,12 +76,12 @@ body {
   transform: translateY(0);
 }
 
-/* ---------- Hero market line drawing itself ---------- */
+/* ---------- SVG lines drawing themselves ---------- */
 
 .draw-line {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: draw-line 2.6s var(--ease-soft) 0.5s forwards;
+  animation: draw-line 2.2s var(--ease-soft) 0.6s forwards;
 }
 
 @keyframes draw-line {
@@ -92,6 +103,37 @@ body {
 
 .animate-glow {
   animation: glow-drift 16s ease-in-out infinite alternate;
+}
+
+/* ---------- Floating diagram circles ---------- */
+
+@keyframes float-y {
+  from {
+    transform: translateY(-6px);
+  }
+  to {
+    transform: translateY(8px);
+  }
+}
+
+.animate-float {
+  animation: float-y 5.5s ease-in-out infinite alternate;
+}
+
+/* ---------- Slow Ken Burns drift for hero photography ---------- */
+
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.animate-kenburns {
+  animation: kenburns 22s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 /* ---------- Cycling tagline ---------- */
@@ -138,12 +180,13 @@ body {
     transform 0.5s var(--ease-soft),
     box-shadow 0.5s var(--ease-soft),
     border-color 0.5s var(--ease-soft),
-    background-color 0.5s var(--ease-soft);
+    background-color 0.5s var(--ease-soft),
+    filter 0.5s var(--ease-soft);
 }
 
 .lift:hover {
   transform: translateY(-6px);
-  box-shadow: 0 28px 56px -28px rgba(10, 21, 34, 0.3);
+  box-shadow: 0 28px 56px -28px rgba(7, 29, 42, 0.45);
 }
 
 /* ---------- Reduced motion ---------- */
@@ -155,6 +198,8 @@ body {
   .animate-fade-up,
   .animate-glow,
   .animate-tagline,
+  .animate-float,
+  .animate-kenburns,
   .draw-line {
     animation: none;
   }
