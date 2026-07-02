@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+
+  --color-ink: #16232f;
+  --color-navy: #12263c;
+  --color-navy-deep: #0a1522;
+  --color-paper: #faf9f6;
+  --color-cream: #f4f1ea;
+  --color-gold: #b08d57;
+  --color-gold-soft: #c8a97a;
+  --color-mist: #5c6975;
+  --color-line: #e6e2d7;
+  --color-line-dark: #223650;
+}
+
+:root {
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-paper font-sans text-ink antialiased;
+}
+
+::selection {
+  background-color: #b08d57;
+  color: #ffffff;
+}
+
+/* ---------- Entrance animation (plays on load, used in heroes) ---------- */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.9s var(--ease-soft) both;
+}
+
+/* ---------- Scroll-triggered reveals ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.9s var(--ease-soft),
+    transform 0.9s var(--ease-soft);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Hero market line drawing itself ---------- */
+
+.draw-line {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-line 2.6s var(--ease-soft) 0.5s forwards;
+}
+
+@keyframes draw-line {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* ---------- Slow drifting ambient glow ---------- */
+
+@keyframes glow-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(-4%, 3%, 0) scale(1.1);
+  }
+}
+
+.animate-glow {
+  animation: glow-drift 16s ease-in-out infinite alternate;
+}
+
+/* ---------- Cycling tagline ---------- */
+
+@keyframes tagline {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  12%,
+  84% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+.animate-tagline {
+  animation: tagline 4.5s ease-in-out both;
+}
+
+/* ---------- Sliding underline for inline links ---------- */
+
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0% 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s var(--ease-soft);
+}
+
+.link-underline:hover,
+.link-underline:focus-visible {
+  background-size: 100% 1px;
+}
+
+/* ---------- Card hover lift ---------- */
+
+.lift {
+  transition:
+    transform 0.5s var(--ease-soft),
+    box-shadow 0.5s var(--ease-soft),
+    border-color 0.5s var(--ease-soft),
+    background-color 0.5s var(--ease-soft);
+}
+
+.lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 28px 56px -28px rgba(10, 21, 34, 0.3);
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-up,
+  .animate-glow,
+  .animate-tagline,
+  .draw-line {
+    animation: none;
+  }
+  .draw-line {
+    stroke-dashoffset: 0;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .lift,
+  .lift:hover {
+    transform: none;
+  }
+}
