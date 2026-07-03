@@ -2,6 +2,7 @@ import type { StaticImageData } from "next/image";
 import ilianPhoto from "@/public/images/team/ilian-scarlatov.png";
 import vesselinPhoto from "@/public/images/team/vesselin-zahariev.png";
 import svetoslavPhoto from "@/public/images/team/svetoslav-tassev.png";
+import filipPhoto from "@/public/images/team/filip-mutafis.jpg";
 
 export type TeamMember = {
   name: string;
@@ -54,7 +55,11 @@ export const TEAM: TeamMember[] = [
     name: "Filip Mutafis",
     initials: "FM",
     role: "Partner",
-    bio: ["Filip joined Mane Capital as Partner in 2023."],
-    education: [],
+    photo: filipPhoto,
+    bio: [
+      "Filip joined Mane Capital as Partner in 2023, bringing entrepreneurial experience from the fintech and technology sectors. He is CEO and one of the founders of Paysera Bulgaria, a fintech company for payment services, and a co-founder of Balkan Services, a business software consultancy.",
+      "Filip is also among the founders of the Bulgarian Fintech Association, where he serves as a member of the Board.",
+    ],
+    education: ["Technical University of Sofia"],
   },
 ];
