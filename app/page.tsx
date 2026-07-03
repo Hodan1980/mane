@@ -243,16 +243,28 @@ export default function HomePage() {
             />
             <ArrowLink href="/team">Meet the team</ArrowLink>
           </Reveal>
-          <div className="mt-14 grid gap-10 sm:grid-cols-3">
+          <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {TEAM.map((member, i) => (
               <Reveal key={member.name} delay={i * 110}>
                 <div className="flex items-center gap-5">
-                  <span
-                    className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-panel to-steel text-xl font-bold text-aqua"
-                    aria-hidden="true"
-                  >
-                    {member.initials}
-                  </span>
+                  {member.photo ? (
+                    <span className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-gradient-to-b from-fog to-icy">
+                      <Image
+                        src={member.photo}
+                        alt={member.name}
+                        fill
+                        sizes="80px"
+                        className="object-cover object-top"
+                      />
+                    </span>
+                  ) : (
+                    <span
+                      className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-panel to-steel text-xl font-bold text-aqua"
+                      aria-hidden="true"
+                    >
+                      {member.initials}
+                    </span>
+                  )}
                   <div>
                     <p className="font-bold text-ink">{member.name}</p>
                     <p className="mt-1 text-sm text-teal">{member.role}</p>

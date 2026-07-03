@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Container, CtaBand, PageHero } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import { TEAM } from "@/content/team";
@@ -30,14 +31,26 @@ export default function TeamPage() {
                 }`}
               >
                 <div>
-                  <div
-                    className="lift flex h-44 w-44 items-center justify-center rounded-full bg-gradient-to-br from-panel to-steel sm:h-52 sm:w-52"
-                    aria-hidden="true"
-                  >
-                    <span className="text-5xl font-bold text-aqua">
-                      {member.initials}
-                    </span>
-                  </div>
+                  {member.photo ? (
+                    <div className="lift relative h-44 w-44 overflow-hidden rounded-full bg-gradient-to-b from-fog to-icy sm:h-52 sm:w-52">
+                      <Image
+                        src={member.photo}
+                        alt={member.name}
+                        fill
+                        sizes="208px"
+                        className="object-cover object-top"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className="lift flex h-44 w-44 items-center justify-center rounded-full bg-gradient-to-br from-panel to-steel sm:h-52 sm:w-52"
+                      aria-hidden="true"
+                    >
+                      <span className="text-5xl font-bold text-aqua">
+                        {member.initials}
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -52,18 +65,20 @@ export default function TeamPage() {
                       <p key={paragraph.slice(0, 40)}>{paragraph}</p>
                     ))}
                   </div>
-                  <div className="mt-7 border-t border-fog pt-6">
-                    <h3 className="text-[11px] font-semibold uppercase tracking-[0.24em] text-mist">
-                      Education
-                    </h3>
-                    <ul className="mt-3 space-y-1.5">
-                      {member.education.map((item) => (
-                        <li key={item} className="text-sm text-mist">
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+                  {member.education.length > 0 ? (
+                    <div className="mt-7 border-t border-fog pt-6">
+                      <h3 className="text-[11px] font-semibold uppercase tracking-[0.24em] text-mist">
+                        Education
+                      </h3>
+                      <ul className="mt-3 space-y-1.5">
+                        {member.education.map((item) => (
+                          <li key={item} className="text-sm text-mist">
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
                 </div>
               </article>
             </Reveal>

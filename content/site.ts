@@ -74,6 +74,10 @@ export const MILESTONES = [
     text: "The partnership expands as Svetoslav Tassev joins, adding buy-side and international investor coverage.",
   },
   {
+    year: "2023",
+    text: "Filip Mutafis joins the firm as Partner.",
+  },
+  {
     year: "Today",
     text: "Active mandates across M&A, equity and debt capital markets — in Bulgaria and across Europe.",
   },
