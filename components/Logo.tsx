@@ -1,28 +1,23 @@
+import Image from "next/image";
 import Link from "next/link";
+import logoBlue from "@/public/images/logo.png";
+import logoWhite from "@/public/images/logo-white.png";
 
 /**
- * Namier-style spaced-caps wordmark. `tone` switches between white
- * (dark backgrounds — default) and petrol (light backgrounds).
+ * The original Mane Capital lion logo. `tone="light"` (default) renders
+ * the white variant for dark backgrounds; `tone="dark"` renders the
+ * brand-blue original for light backgrounds.
  */
 export default function Logo({ tone = "light" }: { tone?: "light" | "dark" }) {
-  const main = tone === "light" ? "text-white" : "text-petrol";
-  const sub = tone === "light" ? "text-white/60" : "text-petrol/60";
+  const src = tone === "light" ? logoWhite : logoBlue;
   return (
-    <Link
-      href="/"
-      aria-label="Mane Capital — home"
-      className="group inline-block leading-none"
-    >
-      <span
-        className={`block text-[1.15rem] font-bold uppercase tracking-[0.42em] ${main}`}
-      >
-        Mane
-      </span>
-      <span
-        className={`mt-1.5 block text-[0.58rem] font-medium uppercase tracking-[0.6em] ${sub}`}
-      >
-        Capital
-      </span>
+    <Link href="/" className="inline-block">
+      <Image
+        src={src}
+        alt="Mane Capital"
+        priority
+        className="h-9 w-auto sm:h-10"
+      />
     </Link>
   );
 }
