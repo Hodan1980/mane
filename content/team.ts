@@ -1,8 +1,9 @@
 import type { StaticImageData } from "next/image";
 import ilianPhoto from "@/public/images/team/ilian-scarlatov.png";
-import vesselinPhoto from "@/public/images/team/vesselin-zahariev.png";
 import svetoslavPhoto from "@/public/images/team/svetoslav-tassev.png";
 import filipPhoto from "@/public/images/team/filip-mutafis.jpg";
+import teodoraPhoto from "@/public/images/team/teodora-gerdjikova.jpg";
+import krasimirPhoto from "@/public/images/team/krasimir-gyurov.jpg";
 
 export type TeamMember = {
   name: string;
@@ -30,17 +31,6 @@ export const TEAM: TeamMember[] = [
     ],
   },
   {
-    name: "Vesselin Zahariev",
-    initials: "VZ",
-    role: "Partner",
-    photo: vesselinPhoto,
-    bio: [
-      "Vesselin has 10 years of international corporate finance experience. He led the corporate finance practice of KBC Securities in Bulgaria between 2009 and 2013 and, before that, of Sofia International Securities.",
-      "His track record includes M&A transactions such as the acquisition of DZI by KBC Group and the sale of Orbitel by Magyar Telekom.",
-    ],
-    education: ["MSc in Economics"],
-  },
-  {
     name: "Svetoslav Tassev",
     initials: "ST",
     role: "Partner",
@@ -61,5 +51,24 @@ export const TEAM: TeamMember[] = [
       "Filip is also among the founders of the Bulgarian Fintech Association, where he serves as a member of the Board.",
     ],
     education: ["Technical University of Sofia"],
+  },
+  {
+    name: "Teodora Gerdjikova",
+    initials: "TG",
+    role: "Partner",
+    photo: teodoraPhoto,
+    bio: [
+      "Teodora brings experience from high-growth technology companies and the public markets. She serves on the Board of Directors of Dronamics Capital, the Bulgarian Stock Exchange-listed investment vehicle of cargo-drone developer Dronamics.",
+      "Earlier in her career she worked on Uber's expansion across Southeast Europe.",
+    ],
+    education: ["McGill University"],
+  },
+  {
+    name: "Krasimir Gyurov",
+    initials: "KG",
+    role: "Partner",
+    photo: krasimirPhoto,
+    bio: ["Krasimir is a Partner at Mane Capital."],
+    education: [],
   },
 ];

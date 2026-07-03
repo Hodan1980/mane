@@ -243,7 +243,7 @@ export default function HomePage() {
             />
             <ArrowLink href="/team">Meet the team</ArrowLink>
           </Reveal>
-          <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
             {TEAM.map((member, i) => (
               <Reveal key={member.name} delay={i * 110}>
                 <div className="flex items-center gap-5">
